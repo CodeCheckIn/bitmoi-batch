@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: quotation-app
+
+logging:
+  level:
+    root: INFO
+    org.springframework.r2dbc: DEBUG
+
+server:
+  #  port: 0
+  port: 8080
