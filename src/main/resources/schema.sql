@@ -8,17 +8,17 @@ CREATE TABLE IF NOT EXISTS COIN
     updated_at  TIMESTAMP  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
     );
 
-INSERT INTO coin (coin_id, name, price, created_at, updated_at)
+INSERT INTO COIN (coin_id, name, price, created_at, updated_at)
 VALUES (1, 'BTC', 0, now(), now());
 
-INSERT INTO coin (coin_id, name, price, created_at, updated_at)
+INSERT INTO COIN (coin_id, name, price, created_at, updated_at)
 VALUES (2, 'ETH', 0, now(), now());
 
-INSERT INTO coin (coin_id, name, price, created_at, updated_at)
+INSERT INTO COIN (coin_id, name, price, created_at, updated_at)
 VALUES (3, 'LTC', 0, now(), now());
 
-INSERT INTO coin (coin_id, name, price, created_at, updated_at)
+INSERT INTO COIN (coin_id, name, price, created_at, updated_at)
 VALUES (4, 'ETC', 0, now(), now());
 
-INSERT INTO coin (coin_id, name, price, created_at, updated_at)
+INSERT INTO COIN (coin_id, name, price, created_at, updated_at)
 VALUES (5, 'XRP', 0, now(), now());

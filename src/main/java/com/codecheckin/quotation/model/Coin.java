@@ -9,11 +9,13 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table("COIN")
 public class Coin {
 
     @Id
