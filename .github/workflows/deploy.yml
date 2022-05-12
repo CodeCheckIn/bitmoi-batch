@@ -39,7 +39,9 @@ jobs:
       with:
         files: ${{ env.RESOURCE_PATH }}
       env:
-        override.value: 'from deploy.yml'
+        spring.r2dbc.url: ${{ secrets.MYSQL_HOST }}
+        spring.r2dbc.username: ${{ secrets.MYSQL_USERNAME }}
+        spring.r2dbc.password: ${{ secrets.MYSQL_PASSWORD }}
 
     # [2]
     - name: Build with Gradle
