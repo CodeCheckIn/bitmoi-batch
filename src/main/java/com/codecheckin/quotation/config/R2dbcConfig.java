@@ -1,8 +1,7 @@
 package com.codecheckin.quotation.config;
 
-import io.r2dbc.h2.H2ConnectionConfiguration;
-import io.r2dbc.h2.H2ConnectionFactory;
-import io.r2dbc.h2.H2ConnectionOption;
+import dev.miku.r2dbc.mysql.MySqlConnectionConfiguration;
+import dev.miku.r2dbc.mysql.MySqlConnectionFactory;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -20,11 +19,9 @@ public class R2dbcConfig extends AbstractR2dbcConfiguration {
 
     @Override
     public ConnectionFactory connectionFactory() {
-        return new H2ConnectionFactory(H2ConnectionConfiguration.builder()
-                .inMemory("testdb")
-                .property(H2ConnectionOption.DB_CLOSE_DELAY, "-1")
-                .username("sa")
-                .build());
+        return MySqlConnectionFactory.from(
+                MySqlConnectionConfiguration.builder().build()
+        );
     }
 
     @Bean

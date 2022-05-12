@@ -36,14 +36,11 @@ public class CoinService {
                 .flatMap(ticker -> coinRepository.findById(ticker.getCoinId())
                         .filter(x -> !x.getPrice().equals(ticker.getPrice()))
                         .flatMap(x -> {
-                            System.out.println(ticker.getPrice());
-
                             x.setPrice(ticker.getPrice());
-                            return Mono.just(x);
+                            return coinRepository.save(x);
                         })
                 )
-                .subscribe(x-> System.out.println(x.getName() + "/" + x.getPrice()))
-                ;
+                .subscribe(x-> System.out.println(x.getName() + "/" + x.getPrice()));
     }
 
     public String produceKafkaEvent(List<Ticker> list) {
