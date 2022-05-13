@@ -9,15 +9,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class CoinService {
 
+    private static final String TOPIC = "quotation";
+
     private final CoinRepository coinRepository;
+    private final KafkaTemplate<String, Coin> tickerKafkaTemplate;
 
     public List<Ticker> getTargetTickerList(JsonNode jsonNode) {
 
@@ -41,6 +47,8 @@ public class CoinService {
 
     public void produceKafkaEvent(Flux<Coin> coinFlux) {
         coinFlux.doOnNext(coin -> {
+//            log.info(String.format("#### -> Producing message -> %s", coin.toString()));
+            this.tickerKafkaTemplate.send(TOPIC, coin);
             System.out.println(coin.getName() + "/" + coin.getPrice());
         }).subscribe();
     }
