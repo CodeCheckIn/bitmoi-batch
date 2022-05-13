@@ -1,6 +1,7 @@
 package com.codecheckin.quotation.service;
 
 import com.codecheckin.quotation.dto.Ticker;
+import com.codecheckin.quotation.model.Coin;
 import com.codecheckin.quotation.model.TargetCoin;
 import com.codecheckin.quotation.repository.CoinRepository;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -25,29 +26,33 @@ public class CoinService {
                     String coinName = e.getCoinName();
                     JsonNode coinJsonNode = jsonNode.get("data").get(e.getCoinName());
                     long timestamp = jsonNode.get("data").get("date").asLong();
-
                     return Ticker.getTickerFromJsonNode(coinName, coinJsonNode, timestamp);
                 })
                 .collect(Collectors.toList());
     }
 
-    public void compareAndUpdateCoinPrice(List<Ticker> list) {
-        Flux.fromIterable(list)
+    public Flux<Coin> compareAndUpdateCoinPrice(List<Ticker> list) {
+        return Flux.fromIterable(list)
                 .flatMap(ticker -> coinRepository.findById(ticker.getCoinId())
-                        .filter(x -> !x.getPrice().equals(ticker.getPrice()))
-                        .flatMap(x -> {
-                            x.setPrice(ticker.getPrice());
-                            return coinRepository.save(x);
-                        })
-                )
-                .subscribe(x-> System.out.println(x.getName() + "/" + x.getPrice()));
+                        .filter(coin -> isNotSamePrice(coin, ticker))
+                        .flatMap(coinInfo -> updateCoinPrice(ticker, coinInfo))
+                );
     }
 
-    public String produceKafkaEvent(List<Ticker> list) {
-        return Flux.fromIterable(list)
-                .map(x -> {
-                    System.out.println(x);
-                    return x;
-                }).collectList().toString();
+    public void produceKafkaEvent(Flux<Coin> coinFlux) {
+        coinFlux.doOnNext(coin -> {
+            System.out.println(coin.getName() + "/" + coin.getPrice());
+        }).subscribe();
+    }
+
+    private boolean isNotSamePrice(Coin coin, Ticker ticker) {
+        String coinPrice = coin.getPrice().stripTrailingZeros().toPlainString();
+        String tickerPrice = ticker.getPrice().toString();
+        return !coinPrice.equals(tickerPrice);
+    }
+
+    private Mono<Coin> updateCoinPrice(Ticker ticker, Coin coinInfo) {
+        coinInfo.setPrice(ticker.getPrice());
+        return coinRepository.save(coinInfo);
     }
 }

@@ -1,9 +1,7 @@
 package com.codecheckin.quotation.handler;
 
-import com.codecheckin.quotation.dto.Ticker;
 import com.codecheckin.quotation.service.CoinService;
 import com.codecheckin.quotation.service.CoinWebClient;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -19,15 +17,21 @@ public class Handler {
     private final CoinService coinService;
 
     public Mono<ServerResponse> getAllCoinTicker(ServerRequest request) {
-
-        Mono<List<Ticker>> coinRawData = coinWebClient.getCoinTickers()
-                .map(coinService::getTargetTickerList)
-                .doOnNext(coinService::compareAndUpdateCoinPrice);
+        Mono<String> result = Mono.just("ok")
+                .doOnNext(x -> quotationRefreshJob());
 
         return ServerResponse
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(coinRawData, List.class);
+                .body(result, String.class);
+    }
+
+    public void quotationRefreshJob() {
+        coinWebClient.getCoinTickers()
+                .map(coinService::getTargetTickerList)
+                .map(coinService::compareAndUpdateCoinPrice)
+                .doOnNext(coinService::produceKafkaEvent)
+                .subscribe();
     }
 
 }
