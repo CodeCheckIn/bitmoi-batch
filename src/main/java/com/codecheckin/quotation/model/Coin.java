@@ -1,6 +1,7 @@
 package com.codecheckin.quotation.model;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class Coin {
     @Id
     private int coinId;
     private String name;
-    private Double price;
+    private BigDecimal price;
 
     @CreatedDate
     private LocalDateTime createdAt;

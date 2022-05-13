@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS COIN
 (
     coin_id     int               NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name        varchar(200)      NOT NULL,
-    price       float             NOT NULL DEFAULT '0',
+    price       decimal(65, 8)    NOT NULL DEFAULT '0',
     created_at  TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP  DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
     );
