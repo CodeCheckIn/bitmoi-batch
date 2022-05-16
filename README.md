@@ -13,11 +13,12 @@
 ### 동작 방식
 - 시세 조회의 동작은 2가지 방식으로 가능하다.
   1. 스케쥴러 방식을 이용한 주기적인 자동 실행
+     - 현재 10초 주기
   2. API 호출을 이용한 수동 실행
   
 --- 
 
-![Quotation Process](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb1499c7c-06ae-430b-bab3-7702fa9efbc9%2Fquoataion_process.png?table=block&id=ce51c8c6-d925-4faa-a1eb-7e520e2baa89&spaceId=f49cbcf2-ae65-4405-b9a1-b06afbcdf1e0&width=1730&userId=9a2ff310-14d3-432a-91ce-df33b3f0e65f&cache=v2)
+![Quotation Process](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fff90b247-1e98-40b7-a004-8da9c7af9a54%2FUntitled.png?table=block&id=94854612-2cb1-44cd-8b03-5bacadd2fa74&spaceId=f49cbcf2-ae65-4405-b9a1-b06afbcdf1e0&width=1730&userId=9a2ff310-14d3-432a-91ce-df33b3f0e65f&cache=v2)
 
 
 

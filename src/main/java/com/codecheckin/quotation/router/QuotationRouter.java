@@ -15,7 +15,7 @@ public class QuotationRouter {
     @Bean
     public RouterFunction<ServerResponse> QuotationRouters(Handler handler) {
         return RouterFunctions.route()
-                .GET("/refresh", handler::getAllCoinTicker)
+                .GET("/quotations/refresh", handler::getAllCoinTicker)
                 .build();
     }
 }
