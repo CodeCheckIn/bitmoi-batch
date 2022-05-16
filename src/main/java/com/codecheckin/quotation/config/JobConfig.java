@@ -15,7 +15,7 @@ public class JobConfig {
 
     @Bean
     public void startJob() {
-        Flux.interval(Duration.ofSeconds(3))
+        Flux.interval(Duration.ofSeconds(10))
                 .doOnNext(x -> handler.quotationRefreshJob())
                 .subscribe();
     }
