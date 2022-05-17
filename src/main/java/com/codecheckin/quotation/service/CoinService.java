@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class CoinService {
 
-    private static final String TOPIC = "quotation";
+    private static final String TOPIC = "bitmoi-quotation";
 
     private final CoinRepository coinRepository;
     private final KafkaTemplate<String, Coin> tickerKafkaTemplate;
