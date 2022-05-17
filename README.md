@@ -18,7 +18,7 @@
   
 --- 
 
-![Quotation Process](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fff90b247-1e98-40b7-a004-8da9c7af9a54%2FUntitled.png?table=block&id=94854612-2cb1-44cd-8b03-5bacadd2fa74&spaceId=f49cbcf2-ae65-4405-b9a1-b06afbcdf1e0&width=1730&userId=9a2ff310-14d3-432a-91ce-df33b3f0e65f&cache=v2)
+![Quotation Process](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc3808b2b-4db0-40a6-a512-06226c5d4db8%2FUntitled.png?table=block&id=83f63f5b-1c2a-4e5f-9484-add8f2a743ef&spaceId=f49cbcf2-ae65-4405-b9a1-b06afbcdf1e0&width=2000&userId=9a2ff310-14d3-432a-91ce-df33b3f0e65f&cache=v2)
 
 
 
